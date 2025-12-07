@@ -1,0 +1,90 @@
+/* リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    color: #D4AF37; /* 金色 */
+    background-color: #000; /* 黒 */
+    background-image: url('images/keybcground.jpg');
+    background-size: cover;
+    background-position: top left;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HEROセクション */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    margin-bottom: 30px;
+}
+
+.symbols {
+    font-size: 3rem;
+    letter-spacing: 60px;
+    margin: 30px 0;
+    padding-left: 60px; /* letter-spacing分の調整 */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+}
+
+/* 言語切替ボタン */
+.language-switcher {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.language-switcher button {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.language-switcher button:hover,
+.language-switcher button.active {
+    background: rgba(212, 175, 55, 0.3);
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .symbols {
+        font-size: 2rem;
+        letter-spacing: 40px;
+        padding-left: 40px;
+    }
+    
+    .language-switcher {
+        top: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+}
