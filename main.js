@@ -83,3 +83,17 @@ function switchLanguage(lang) {
     
     event.target.classList.add('active');
 }
+
+// ハンバーガーメニュー切り替え
+function toggleMenu() {
+    const menuList = document.getElementById('menuList');
+    menuList.classList.toggle('active');
+}
+
+// メニュー項目クリック時にメニューを閉じる
+document.querySelectorAll('.main-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        const menuList = document.getElementById('menuList');
+        menuList.classList.remove('active');
+    });
+});

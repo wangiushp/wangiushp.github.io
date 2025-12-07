@@ -19,7 +19,7 @@ body {
     align-items: center;
     justify-content: center;
     padding-top: 60px;
-    padding-bottom: 120px;
+    padding-bottom: 140px;
 }
 
 /* ヘッダーメニュー */
@@ -56,11 +56,34 @@ body {
     letter-spacing: 0.05em;
     transition: all 0.3s;
     display: block;
+    white-space: nowrap;
 }
 
 .main-menu a:hover,
 .main-menu a.active {
     color: #FFD700;
+}
+
+/* ハンバーガーメニューボタン(デフォルトは非表示) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    z-index: 1002;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: #D4AF37;
+    transition: all 0.3s;
 }
 
 /* HEROセクション */
@@ -92,7 +115,7 @@ body {
 /* 言語切替ボタン(下部中央) */
 .language-switcher {
     position: fixed;
-    bottom: 80px;
+    bottom: 90px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -105,10 +128,11 @@ body {
     border: none;
     border-bottom: 2px solid transparent;
     color: rgba(212, 175, 55, 0.7);
-    padding: 5px 10px;
-    font-size: 0.9rem;
+    padding: 8px 15px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .language-switcher button:hover,
@@ -131,33 +155,79 @@ body {
     letter-spacing: 0.1em;
 }
 
-/* レスポンシブ */
+/* レスポンシブ(タブレット・スマホ) */
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+        padding-bottom: 160px;
+    }
+    
+    /* ハンバーガーメニュー表示 */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    /* メニューを縦並びに */
+    .main-menu ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 70px;
+        gap: 0;
+        transition: left 0.3s;
+    }
+    
+    .main-menu ul.active {
+        left: 0;
+    }
+    
+    .main-menu li {
+        width: 100%;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .main-menu a {
+        padding: 15px 20px;
+        font-size: 1rem;
+        width: 100%;
+        text-align: left;
+    }
+    
+    /* Hero調整 */
     .hero h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        letter-spacing: 0.1em;
     }
     
     .symbols {
         font-size: 2rem;
-        letter-spacing: 40px;
-        padding-left: 40px;
+        letter-spacing: 30px;
+        padding-left: 30px;
     }
     
-    .main-menu ul {
-        gap: 3px;
+    .hero p {
+        font-size: 0.9rem;
     }
     
-    .main-menu a {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-    }
-    
+    /* 言語切替調整 */
     .language-switcher {
-        bottom: 60px;
+        bottom: 70px;
         gap: 20px;
     }
     
     .language-switcher button {
-        font-size: 0.8rem;
+        font-size: 0.95rem;
+        padding: 8px 12px;
+    }
+    
+    /* フッター調整 */
+    .site-footer {
+        font-size: 0.75rem;
+        padding: 15px;
     }
 }
