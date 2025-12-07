@@ -97,3 +97,106 @@ document.querySelectorAll('.main-menu a').forEach(link => {
         menuList.classList.remove('active');
     });
 });
+
+// ページ遷移
+let currentPage = 'home';
+let currentLang = 'en';
+
+// メニューリンククリック時
+document.querySelectorAll('.main-menu a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const menuId = link.getAttribute('data-menu');
+        navigateToPage(menuId);
+        
+        // アクティブ状態更新
+        document.querySelectorAll('.main-menu a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        
+        // ハンバーガーメニューを閉じる
+        const menuList = document.getElementById('menuList');
+        menuList.classList.remove('active');
+    });
+});
+
+// ページ遷移関数
+async function navigateToPage(pageId) {
+    // 全ページを非表示
+    document.querySelectorAll('.page').forEach(page => {
+        page.style.display = 'none';
+    });
+    
+    // 指定ページを表示
+    const targetPage = document.getElementById(`page-${pageId}`);
+    if (targetPage) {
+        targetPage.style.display = 'block';
+        currentPage = pageId;
+        
+        // Homeページ以外はコンテンツを読み込む
+        if (pageId !== 'home') {
+            await loadPageContent(pageId);
+        }
+    }
+}
+
+// ページコンテンツを読み込む
+async function loadPageContent(menuId) {
+    try {
+        const response = await fetch(`${API_ENDPOINT}/contents?filters=menu_id[equals]${menuId}`, {
+            headers: {
+                'X-MICROCMS-API-KEY': API_KEY
+            }
+        });
+        const data = await response.json();
+        
+        if (data.contents && data.contents.length > 0) {
+            displayPageContent(data.contents);
+        } else {
+            document.getElementById(`${menuId}-content`).innerHTML = 
+                '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">コンテンツはまだ登録されていません。</p>';
+        }
+    } catch (error) {
+        console.error('コンテンツ取得エラー:', error);
+    }
+}
+
+// ページコンテンツを表示
+function displayPageContent(contents) {
+    // 最初のコンテンツを表示(簡易版)
+    const content = contents[0];
+    const container = document.querySelector('.page-content');
+    
+    if (container) {
+        container.innerHTML = `
+            <div class="lang-en">${content.content_en || ''}</div>
+            <div class="lang-zh" style="display:none;">${content.content_zh || ''}</div>
+            <div class="lang-ja" style="display:none;">${content.content_ja || ''}</div>
+        `;
+        
+        // 現在の言語に合わせて表示
+        updateLanguageDisplay();
+    }
+}
+
+// 言語表示を更新
+function updateLanguageDisplay() {
+    document.querySelectorAll('.lang-en, .lang-zh, .lang-ja').forEach(el => {
+        el.style.display = 'none';
+    });
+    
+    document.querySelectorAll(`.lang-${currentLang}`).forEach(el => {
+        el.style.display = 'block';
+    });
+}
+
+// 言語切り替え関数を更新
+function switchLanguage(lang) {
+    currentLang = lang;
+    updateLanguageDisplay();
+    
+    document.querySelectorAll('.language-switcher button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    event.target.classList.add('active');
+}

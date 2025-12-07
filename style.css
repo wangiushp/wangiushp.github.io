@@ -89,7 +89,7 @@ body {
 /* HEROセクション */
 .hero {
     text-align: center;
-    padding: 40px 20px;
+    padding: 170px 20px 40px 20px;
 }
 
 .hero h1 {
@@ -126,7 +126,7 @@ body {
 .language-switcher button {
     background: transparent;
     border: none;
-    border-bottom: 2px solid transparent;
+    border-bottom: 0.5px solid transparent;
     color: rgba(212, 175, 55, 0.7);
     padding: 8px 15px;
     font-size: 1rem;
@@ -138,7 +138,7 @@ body {
 .language-switcher button:hover,
 .language-switcher button.active {
     color: #FFD700;
-    border-bottom: 2px solid #FFD700;
+    border-bottom: 0.5px solid #FFD700;
 }
 
 /* フッター */
@@ -229,5 +229,66 @@ body {
     .site-footer {
         font-size: 0.75rem;
         padding: 15px;
+    }
+}
+
+/* ページコンテナ */
+#pageContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page {
+    min-height: 60vh;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* コンテンツページ */
+.content-page {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.content-page h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    margin-bottom: 40px;
+    color: #D4AF37;
+}
+
+.page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.page-content p {
+    margin-bottom: 20px;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .content-page h2 {
+        font-size: 1.8rem;
+    }
+    
+    .page-content {
+        font-size: 1rem;
+        padding: 0 20px;
     }
 }

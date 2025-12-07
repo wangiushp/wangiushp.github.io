@@ -26,24 +26,42 @@
     </ul>
 </nav>
 
-    <!-- Heroセクション -->
-    <div class="hero lang-en">
-        <h1>THE WANGIUS THOUGHT SYSTEM</h1>
-        <div class="symbols">Ω ∞ △</div>
-        <p>Existence as Self-Proof · The Infinite Universe · Ω Framework</p>
-    </div>
+    <!-- ページコンテナ -->
+    <main id="pageContainer">
+        <!-- Homeページ -->
+        <div class="page" id="page-home" style="display:block;">
+            <div class="hero lang-en">
+                <h1>THE WANGIUS THOUGHT SYSTEM</h1>
+                <div class="symbols">Ω ∞ △</div>
+                <p>Existence as Self-Proof · The Infinite Universe · Ω Framework</p>
+            </div>
 
-    <div class="hero lang-zh" style="display:none;">
-        <h1>王修斯思想体系</h1>
-        <div class="symbols">Ω ∞ △</div>
-        <p>存在自证 · 无限宇宙论 · Ω架构</p>
-    </div>
+            <div class="hero lang-zh" style="display:none;">
+                <h1>王修斯思想体系</h1>
+                <div class="symbols">Ω ∞ △</div>
+                <p>存在自证 · 无限宇宙论 · Ω架构</p>
+            </div>
 
-    <div class="hero lang-ja" style="display:none;">
-        <h1>ワンギウス思想体系</h1>
-        <div class="symbols">Ω ∞ △</div>
-        <p>存在自証・無限宇宙論・Ωフレームワーク</p>
-    </div>
+            <div class="hero lang-ja" style="display:none;">
+                <h1>ワンギウス思想体系</h1>
+                <div class="symbols">Ω ∞ △</div>
+                <p>存在自証・無限宇宙論・Ωフレームワーク</p>
+            </div>
+        </div>
+
+        <!-- Thought Overviewページ(仮) -->
+        <div class="page" id="page-thought-overview" style="display:none;">
+            <div class="content-page">
+                <h2 class="lang-en">Thought Overview</h2>
+                <h2 class="lang-zh" style="display:none;">思想介绍</h2>
+                <h2 class="lang-ja" style="display:none;">思想紹介</h2>
+                
+                <div id="thought-content" class="page-content">
+                    Loading...
+                </div>
+            </div>
+        </div>
+    </main>
 
     <div class="language-switcher">
         <button onclick="switchLanguage('zh')">中文</button>
