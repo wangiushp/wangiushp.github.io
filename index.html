@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+        <!-- ヘッダーメニュー -->
+    <nav class="main-menu">
+        <ul>
+            <li><a href="#home" class="active" data-menu="home">Home</a></li>
+            <li><a href="#thought-overview" data-menu="thought-overview">Thought Overview</a></li>
+            <li><a href="#public-statements" data-menu="public-statements">Public Statements</a></li>
+            <li><a href="#articles" data-menu="articles">Articles & Publications</a></li>
+            <li><a href="#ai-charter" data-menu="ai-charter">AI Charter</a></li>
+            <li><a href="#essays" data-menu="essays">Essays</a></li>
+            <li><a href="#author" data-menu="author">Author</a></li>
+            <li><a href="#contact" data-menu="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Heroセクション -->
     <div class="hero lang-en">
         <h1>THE WANGIUS THOUGHT SYSTEM</h1>
         <div class="symbols">Ω ∞ △</div>
@@ -30,6 +45,18 @@
         <button onclick="switchLanguage('en')" class="active">ENGLISH</button>
         <button onclick="switchLanguage('ja')">日本語</button>
     </div>
+
+    <script src="main.js"></script>
+    <div class="language-switcher">
+        <button onclick="switchLanguage('zh')">中文</button>
+        <button onclick="switchLanguage('en')" class="active">ENGLISH</button>
+        <button onclick="switchLanguage('ja')">日本語</button>
+    </div>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Wangius. All Rights Reserved.</p>
+    </footer>
 
     <script src="main.js"></script>
 </body>
