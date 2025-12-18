@@ -141,6 +141,13 @@ async function navigateToPage(pageId) {
 
 // ページコンテンツを読み込む
 async function loadPageContent(menuId) {
+    const contentElement = document.getElementById(`${menuId}-content`);
+    
+    if (!contentElement) return;
+    
+    // Loading表示
+    contentElement.innerHTML = '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">Loading...</p>';
+    
     try {
         const response = await fetch(`${API_ENDPOINT}/contents?filters=menu_id[equals]${menuId}`, {
             headers: {
@@ -150,32 +157,39 @@ async function loadPageContent(menuId) {
         const data = await response.json();
         
         if (data.contents && data.contents.length > 0) {
-            displayPageContent(data.contents);
+            displayPageContent(data.contents, contentElement);
         } else {
-            document.getElementById(`${menuId}-content`).innerHTML = 
+            contentElement.innerHTML = 
                 '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">コンテンツはまだ登録されていません。</p>';
         }
     } catch (error) {
         console.error('コンテンツ取得エラー:', error);
+        contentElement.innerHTML = 
+            '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">エラーが発生しました。</p>';
     }
 }
 
 // ページコンテンツを表示
-function displayPageContent(contents) {
-    // 最初のコンテンツを表示(簡易版)
-    const content = contents[0];
-    const container = document.querySelector('.page-content');
+function displayPageContent(contents, container) {
+    // 複数コンテンツを表示
+    let htmlEn = '';
+    let htmlZh = '';
+    let htmlJa = '';
     
-    if (container) {
-        container.innerHTML = `
-            <div class="lang-en">${content.content_en || ''}</div>
-            <div class="lang-zh" style="display:none;">${content.content_zh || ''}</div>
-            <div class="lang-ja" style="display:none;">${content.content_ja || ''}</div>
-        `;
-        
-        // 現在の言語に合わせて表示
-        updateLanguageDisplay();
-    }
+    contents.forEach(content => {
+        htmlEn += `<div class="content-block">${content.content_en || ''}</div>`;
+        htmlZh += `<div class="content-block">${content.content_zh || ''}</div>`;
+        htmlJa += `<div class="content-block">${content.content_ja || ''}</div>`;
+    });
+    
+    container.innerHTML = `
+        <div class="lang-en">${htmlEn}</div>
+        <div class="lang-zh" style="display:none;">${htmlZh}</div>
+        <div class="lang-ja" style="display:none;">${htmlJa}</div>
+    `;
+    
+    // 現在の言語に合わせて表示
+    updateLanguageDisplay();
 }
 
 // 言語表示を更新
