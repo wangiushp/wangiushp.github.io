@@ -92,6 +92,16 @@ body {
     padding: 170px 20px 40px 20px;
 }
 
+/* Heroロゴ */
+.hero-logo {
+    max-width: 200px;
+    width: 80%;
+    height: auto;
+    margin: 0 auto 30px auto;
+    display: block;
+    opacity: 0.9;
+}
+
 .hero h1 {
     font-size: 3rem;
     font-weight: 300;
@@ -218,6 +228,13 @@ body {
         font-size: 0.9rem;
     }
     
+    /* Heroロゴ調整 */
+    .hero-logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+    }
+}
+
     /* 言語切替調整 */
     .language-switcher {
         bottom: 70px;
