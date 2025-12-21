@@ -214,3 +214,65 @@ function switchLanguage(lang) {
     
     event.target.classList.add('active');
 }
+
+// お問い合わせフォーム送信処理
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const resultDiv = document.getElementById('formResult');
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const submitBtnSpans = submitBtn.querySelectorAll('span');
+        
+        // 送信中の表示
+        submitBtn.disabled = true;
+        submitBtnSpans.forEach(span => span.style.display = 'none');
+        submitBtn.textContent = 'Sending...';
+        resultDiv.style.display = 'none';
+        
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // 成功
+                resultDiv.className = 'form-result success';
+                if (currentLang === 'en') {
+                    resultDiv.textContent = 'Thank you! Your message has been sent successfully.';
+                } else if (currentLang === 'zh') {
+                    resultDiv.textContent = '谢谢！您的留言已成功发送。';
+                } else {
+                    resultDiv.textContent = 'ありがとうございます!メッセージが正常に送信されました。';
+                }
+                resultDiv.style.display = 'block';
+                contactForm.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            // エラー
+            resultDiv.className = 'form-result error';
+            if (currentLang === 'en') {
+                resultDiv.textContent = 'Sorry, there was an error sending your message. Please try again.';
+            } else if (currentLang === 'zh') {
+                resultDiv.textContent = '抱歉，发送留言时出错。请重试。';
+            } else {
+                resultDiv.textContent = '申し訳ございません。メッセージの送信中にエラーが発生しました。もう一度お試しください。';
+            }
+            resultDiv.style.display = 'block';
+        } finally {
+            // ボタンを元に戻す
+            submitBtn.disabled = false;
+            submitBtn.textContent = '';
+            submitBtnSpans.forEach(span => {
+                span.style.display = '';
+            });
+        }
+    });
+}

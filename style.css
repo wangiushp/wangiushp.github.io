@@ -165,6 +165,134 @@ body {
     letter-spacing: 0.1em;
 }
 
+/* ページコンテナ */
+#pageContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page {
+    min-height: 60vh;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* コンテンツページ */
+.content-page {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.content-page h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    margin-bottom: 40px;
+    color: #D4AF37;
+}
+
+.page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.page-content p {
+    margin-bottom: 20px;
+}
+
+/* お問い合わせフォーム */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #D4AF37;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #D4AF37;
+    font-family: 'Times New Roman', serif;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #D4AF37;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #D4AF37;
+    border: 2px solid #D4AF37;
+    color: #000;
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    background: #FFD700;
+    border-color: #FFD700;
+    color: #000;
+}
+
+.form-result {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 4px;
+    display: none;
+}
+
+.form-result.success {
+    display: block;
+    background: rgba(0, 128, 0, 0.2);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: #90EE90;
+}
+
+.form-result.error {
+    display: block;
+    background: rgba(128, 0, 0, 0.2);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #FFB6C1;
+}
+
 /* レスポンシブ(タブレット・スマホ) */
 @media (max-width: 768px) {
     body {
@@ -233,8 +361,7 @@ body {
         max-width: 150px;
         margin-bottom: 20px;
     }
-}
-
+    
     /* 言語切替調整 */
     .language-switcher {
         bottom: 70px;
@@ -251,59 +378,8 @@ body {
         font-size: 0.75rem;
         padding: 15px;
     }
-}
-
-/* ページコンテナ */
-#pageContainer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.page {
-    min-height: 60vh;
-    animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* コンテンツページ */
-.content-page {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.content-page h2 {
-    font-size: 2.5rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    margin-bottom: 40px;
-    color: #D4AF37;
-}
-
-.page-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
-    line-height: 1.8;
-    font-size: 1.1rem;
-}
-
-.page-content p {
-    margin-bottom: 20px;
-}
-
-/* レスポンシブ */
-@media (max-width: 768px) {
+    
+    /* コンテンツページ調整 */
     .content-page h2 {
         font-size: 1.8rem;
     }
@@ -311,5 +387,15 @@ body {
     .page-content {
         font-size: 1rem;
         padding: 0 20px;
+    }
+    
+    /* フォーム調整 */
+    .contact-form {
+        padding: 10px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.95rem;
     }
 }
