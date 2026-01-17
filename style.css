@@ -122,15 +122,12 @@ body {
     opacity: 0.9;
 }
 
-/* 言語切替ボタン(下部中央) */
+/* 言語切替ボタン(フッター内) */
 .language-switcher {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
-    gap: 30px;
-    z-index: 1001;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
 }
 
 .language-switcher button {
@@ -158,11 +155,16 @@ body {
     left: 0;
     right: 0;
     text-align: center;
-    padding: 20px;
-    background: transparent;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3); /* 半透明の黒背景 */
+    backdrop-filter: blur(5px); /* ぼかし効果 */
     color: rgba(212, 175, 55, 0.6);
     font-size: 0.85rem;
     letter-spacing: 0.1em;
+}
+
+.site-footer p {
+    margin: 0;
 }
 
 /* ページコンテナ */
