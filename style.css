@@ -1,3 +1,4 @@
+/* リセット */
 * {
     margin: 0;
     padding: 0;
@@ -88,7 +89,7 @@ body {
 /* HEROセクション */
 .hero {
     text-align: center;
-    padding: 200px 20px 60px 20px; /* 上部パディングを170px → 200px、下部を40px → 60px に変更 */
+    padding: 120px 20px 60px 20px; /* 上部パディングを調整 */
 }
 
 /* Heroロゴ */
@@ -361,7 +362,7 @@ body {
     
     /* Hero調整 */
     .hero {
-        padding: 80px 20px 30px 20px; /* 上部を60px → 80px、下部を20px → 30px に変更 */
+        padding: 70px 20px 30px 20px; /* スマホ版も調整 */
     }
 
     .hero h1 {
