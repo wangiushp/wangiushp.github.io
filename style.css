@@ -193,23 +193,45 @@ body {
 /* コンテンツページ */
 .content-page {
     text-align: center;
-    padding: 40px 20px;
+    padding: 0;
+    height: calc(100vh - 60px - 100px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* これを追加 */
 }
 
-.content-page h2 {
+/* ページヘッダー(見出し部分) */
+.page-header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    flex-shrink: 0;
+}
+
+.page-header h2 {
     font-size: 2.5rem;
     font-weight: 300;
     letter-spacing: 0.2em;
-    margin-bottom: 40px;
+    margin: 0;
     color: #D4AF37;
 }
 
 .page-content {
     max-width: 800px;
     margin: 0 auto;
+    padding: 20px;
     text-align: left;
     line-height: 1.8;
     font-size: 1.1rem;
+    overflow-y: auto; /* スクロール可能に */
+    flex: 1; /* 残りのスペースを使用 */
+    /* スクロールバー非表示 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE, Edge */
+}
+
+/* Webkit系(Chrome, Safari)のスクロールバー非表示 */
+.page-content::-webkit-scrollbar {
+    display: none;
 }
 
 .page-content p {
