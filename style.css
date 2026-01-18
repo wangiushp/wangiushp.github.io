@@ -1,4 +1,3 @@
-/* リセット */
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +17,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 60px;
+    padding-top: 80px; /* 60px → 80px に変更 */
     padding-bottom: 140px;
 }
 
@@ -89,7 +88,7 @@ body {
 /* HEROセクション */
 .hero {
     text-align: center;
-    padding: 170px 20px 40px 20px;
+    padding: 200px 20px 60px 20px; /* 上部パディングを170px → 200px、下部を40px → 60px に変更 */
 }
 
 /* Heroロゴ */
@@ -97,7 +96,7 @@ body {
     max-width: 200px;
     width: 80%;
     height: auto;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 40px auto; /* 30px → 40px に変更 */
     display: block;
     opacity: 0.9;
 }
@@ -106,13 +105,13 @@ body {
     font-size: 3rem;
     font-weight: 300;
     letter-spacing: 0.2em;
-    margin-bottom: 30px;
+    margin-bottom: 40px; /* 30px → 40px に変更 */
 }
 
 .symbols {
     font-size: 3rem;
     letter-spacing: 60px;
-    margin: 30px 0;
+    margin: 40px 0; /* 30px → 40px に変更 */
     padding-left: 60px;
 }
 
@@ -203,7 +202,7 @@ body {
 /* ページヘッダー(見出し部分) */
 .page-header {
     text-align: center;
-    padding: 40px 20px 20px 20px;
+    padding: 40px 20px 40px 20px;
     flex-shrink: 0;
 }
 
@@ -362,7 +361,7 @@ body {
     
     /* Hero調整 */
     .hero {
-        padding: 60px 20px 20px 20px;
+        padding: 80px 20px 30px 20px; /* 上部を60px → 80px、下部を20px → 30px に変更 */
     }
 
     .hero h1 {
@@ -374,6 +373,7 @@ body {
         font-size: 2rem;
         letter-spacing: 30px;
         padding-left: 30px;
+        margin: 30px 0; /* 追加: スマホでも適切な間隔を確保 */
     }
     
     .hero p {
@@ -383,7 +383,7 @@ body {
     /* Heroロゴ調整 */
     .hero-logo {
         max-width: 150px;
-        margin-bottom: 20px;
+        margin-bottom: 25px; /* 20px → 25px に変更 */
     }
     
     /* 言語切替調整 */
