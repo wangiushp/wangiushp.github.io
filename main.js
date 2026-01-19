@@ -146,7 +146,7 @@ async function loadPageContent(menuId) {
     if (!contentElement) return;
     
     // Loading表示
-    contentElement.innerHTML = '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">Loading...</p>';
+    contentElement.innerHTML = '<p style="text-align:center; color: #000(212, 175, 55, 0.6);">Loading...</p>';
     
     try {
         const response = await fetch(`${API_ENDPOINT}/contents?filters=menu_id[equals]${menuId}`, {
@@ -160,12 +160,12 @@ async function loadPageContent(menuId) {
             displayPageContent(data.contents, contentElement);
         } else {
             contentElement.innerHTML = 
-                '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">コンテンツはまだ登録されていません。</p>';
+                '<p style="text-align:center; color: #000(212, 175, 55, 0.6);">コンテンツはまだ登録されていません。</p>';
         }
     } catch (error) {
         console.error('コンテンツ取得エラー:', error);
         contentElement.innerHTML = 
-            '<p style="text-align:center; color: rgba(212, 175, 55, 0.6);">エラーが発生しました。</p>';
+            '<p style="text-align:center; color: #000(212, 175, 55, 0.6);">エラーが発生しました。</p>';
     }
 }
 
