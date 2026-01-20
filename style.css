@@ -219,6 +219,18 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
+}
+
+.content-page::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, #C0C0C0, #000);
+    z-index: 10;
 }
 
 /* ページヘッダー(見出し部分) */
@@ -249,8 +261,9 @@ body {
 
 .page-content {
     max-width: 800px;
+    width: 80%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0;
     text-align: left;
     line-height: 1.8;
     font-size: 1.1rem;
@@ -447,7 +460,8 @@ body {
     
     .page-content {
         font-size: 1rem;
-        padding: 0 20px;
+        padding: 20px 0;
+        width: 80%;
     }
     
     .contact-form {
