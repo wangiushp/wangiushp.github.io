@@ -46,7 +46,7 @@ body {
 }
 
 .main-menu a {
-    color: rgba(0, 0, 0, 0.7); /* ゴールド → 黒(70%透明度) */
+    color: rgba(0, 0, 0, 0.7);
     text-decoration: none;
     padding: 8px 15px;
     font-size: 0.9rem;
@@ -58,7 +58,7 @@ body {
 
 .main-menu a:hover,
 .main-menu a.active {
-    color: #000; /* 濃いゴールド → 黒 */
+    color: #000;
 }
 
 /* ハンバーガーメニューボタン(デフォルトは非表示) */
@@ -79,8 +79,25 @@ body {
 .menu-toggle span {
     width: 25px;
     height: 2px;
-    background: #000; /* ゴールド → 黒 */
+    background: #000;
     transition: all 0.3s;
+}
+
+/* モバイルヘッダー - PC版では完全非表示 */
+.mobile-header {
+    display: none;
+}
+
+.mobile-logo {
+    height: 30px;
+    width: auto;
+}
+
+.mobile-title {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #000;
 }
 
 /* HEROセクション */
@@ -107,10 +124,17 @@ body {
 }
 
 .symbols {
-    font-size: 3rem;
-    letter-spacing: 60px;
     margin: 40px 0;
-    padding-left: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.symbol-image {
+    max-width: 200px;
+    width: 20%;
+    height: auto;
+    display: block;
 }
 
 .hero p {
@@ -131,7 +155,7 @@ body {
     background: transparent;
     border: none;
     border-bottom: 0.5px solid transparent;
-    color: rgba(0, 0, 0, 0.7); /* ゴールド → 黒(70%透明度) */
+    color: rgba(0, 0, 0, 0.7);
     padding: 8px 15px;
     font-size: 1rem;
     cursor: pointer;
@@ -141,8 +165,8 @@ body {
 
 .language-switcher button:hover,
 .language-switcher button.active {
-    color: #000; /* 濃いゴールド → 黒 */
-    border-bottom: 0.5px solid #000; /* ゴールド → 黒 */
+    color: #000;
+    border-bottom: 0.5px solid #000;
 }
 
 /* フッター */
@@ -153,9 +177,9 @@ body {
     right: 0;
     text-align: center;
     padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.9); /* 半透明の黒 → 白 */
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(5px);
-    color: rgba(0, 0, 0, 0.6); /* ゴールド → 黒(60%透明度) */
+    color: rgba(0, 0, 0, 0.6);
     font-size: 0.85rem;
     letter-spacing: 0.1em;
 }
@@ -209,7 +233,7 @@ body {
     font-weight: 300;
     letter-spacing: 0.2em;
     margin: 0;
-    color: #000; /* ゴールド → 黒 */
+    color: #000;
 }
 
 .page-content {
@@ -247,7 +271,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #000; /* ゴールド → 黒 */
+    color: #000;
     font-size: 1rem;
     letter-spacing: 0.05em;
 }
@@ -256,9 +280,9 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.8); /* 黒 → 白(80%透明度) */
-    border: 1px solid rgba(0, 0, 0, 0.3); /* ゴールド → 黒(30%透明度) */
-    color: #000; /* ゴールド → 黒 */
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    color: #000;
     font-family: 'Times New Roman', serif;
     font-size: 1rem;
     transition: all 0.3s;
@@ -267,16 +291,16 @@ body {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #000; /* ゴールド → 黒 */
-    background: rgba(255, 255, 255, 0.95); /* 黒 → 白(95%透明度) */
+    border-color: #000;
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .submit-btn {
     width: 100%;
     padding: 15px;
-    background: #000; /* ゴールド → 黒 */
-    border: 2px solid #000; /* ゴールド → 黒 */
-    color: #FFF; /* 黒 → 白 */
+    background: #000;
+    border: 2px solid #000;
+    color: #FFF;
     font-size: 1.1rem;
     font-family: 'Times New Roman', serif;
     letter-spacing: 0.1em;
@@ -285,9 +309,9 @@ body {
 }
 
 .submit-btn:hover {
-    background: #333; /* 明るいゴールド → ダークグレー */
-    border-color: #333; /* 明るいゴールド → ダークグレー */
-    color: #FFF; /* 黒 → 白 */
+    background: #333;
+    border-color: #333;
+    color: #FFF;
 }
 
 .form-result {
@@ -302,14 +326,14 @@ body {
     display: block;
     background: rgba(0, 128, 0, 0.2);
     border: 1px solid rgba(0, 255, 0, 0.3);
-    color: #006400; /* 明るい緑 → ダークグリーン */
+    color: #006400;
 }
 
 .form-result.error {
     display: block;
     background: rgba(128, 0, 0, 0.2);
     border: 1px solid rgba(255, 0, 0, 0.3);
-    color: #8B0000; /* ピンク → ダークレッド */
+    color: #8B0000;
 }
 
 /* レスポンシブ(タブレット・スマホ) */
@@ -323,13 +347,24 @@ body {
         display: flex;
     }
     
+    /* モバイルヘッダーをスマホで表示 */
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: fixed;
+        left: 70px;
+        top: 18px;
+        z-index: 1001;
+    }
+    
     .main-menu ul {
         position: fixed;
         top: 0;
         left: -100%;
         width: 70%;
         height: 100vh;
-        background: rgba(255, 255, 255, 0.98); /* 黒 → 白 */
+        background: rgba(255, 255, 255, 0.98);
         flex-direction: column;
         justify-content: flex-start;
         padding-top: 70px;
@@ -343,7 +378,7 @@ body {
     
     .main-menu li {
         width: 100%;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* ゴールド → 黒(20%透明度) */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     }
     
     .main-menu a {
@@ -363,10 +398,12 @@ body {
     }
     
     .symbols {
-        font-size: 2rem;
-        letter-spacing: 30px;
-        padding-left: 30px;
         margin: 30px 0;
+    }
+    
+    .symbol-image {
+        max-width: 250px;
+        width: 40%;
     }
     
     .hero p {
