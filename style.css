@@ -226,6 +226,17 @@ body {
     text-align: center;
     padding: 40px 20px 40px 20px;
     flex-shrink: 0;
+    position: relative;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, #C0C0C0, #000);
 }
 
 .page-header h2 {
