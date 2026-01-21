@@ -1,5 +1,5 @@
 // microCMS設定
-const API_KEY = 'qoWFh4bzPcrGHuIVPX3q5ZrkPKOH6quTWMLc'; // ここに実際のAPIキーを入力
+const API_KEY = 'qoWFh4bzPcrGHuIVPX3q5ZrkPKOH6quTWMLc';
 const SERVICE_ID = 'wangius';
 const API_ENDPOINT = `https://${SERVICE_ID}.microcms.io/api/v1`;
 
@@ -71,11 +71,8 @@ function displayContent(content) {
 
 // 言語切り替え関数
 function switchLanguage(lang) {
-    document.querySelectorAll('.hero').forEach(el => {
-        el.style.display = 'none';
-    });
-    
-    document.querySelector('.lang-' + lang).style.display = 'block';
+    currentLang = lang;
+    updateLanguageDisplay();
     
     document.querySelectorAll('.language-switcher button').forEach(btn => {
         btn.classList.remove('active');
@@ -146,7 +143,7 @@ async function loadPageContent(menuId) {
     if (!contentElement) return;
     
     // Loading表示
-    contentElement.innerHTML = '<p style="text-align:center; color: #000(212, 175, 55, 0.6);">Loading...</p>';
+    contentElement.innerHTML = '<p style="text-align:center; color: rgba(0, 0, 0, 0.6);">Loading...</p>';
     
     try {
         const response = await fetch(`${API_ENDPOINT}/contents?filters=menu_id[equals]${menuId}`, {
@@ -157,20 +154,20 @@ async function loadPageContent(menuId) {
         const data = await response.json();
         
         if (data.contents && data.contents.length > 0) {
-            displayPageContent(data.contents, contentElement);
+            displayPageContent(data.contents, contentElement, menuId);
         } else {
             contentElement.innerHTML = 
-                '<p style="text-align:center; color: #000(212, 175, 55, 0.6);">コンテンツはまだ登録されていません。</p>';
+                '<p style="text-align:center; color: rgba(0, 0, 0, 0.6);">コンテンツはまだ登録されていません。</p>';
         }
     } catch (error) {
         console.error('コンテンツ取得エラー:', error);
         contentElement.innerHTML = 
-            '<p style="text-align:center; color: #000(212, 175, 55, 0.6);">エラーが発生しました。</p>';
+            '<p style="text-align:center; color: rgba(0, 0, 0, 0.6);">エラーが発生しました。</p>';
     }
 }
 
 // ページコンテンツを表示
-function displayPageContent(contents, container) {
+function displayPageContent(contents, container, menuId) {
     // 複数コンテンツを表示
     let htmlEn = '';
     let htmlZh = '';
@@ -188,6 +185,17 @@ function displayPageContent(contents, container) {
         <div class="lang-ja" style="display:none;">${htmlJa}</div>
     `;
     
+    // タイトルも更新（最初のコンテンツのタイトルを使用）
+    if (contents.length > 0 && contents[0].title_en) {
+        const headerEn = document.querySelector(`#page-${menuId} .page-header h2.lang-en`);
+        const headerZh = document.querySelector(`#page-${menuId} .page-header h2.lang-zh`);
+        const headerJa = document.querySelector(`#page-${menuId} .page-header h2.lang-ja`);
+        
+        if (headerEn && contents[0].title_en) headerEn.textContent = contents[0].title_en;
+        if (headerZh && contents[0].title_zh) headerZh.textContent = contents[0].title_zh;
+        if (headerJa && contents[0].title_ja) headerJa.textContent = contents[0].title_ja;
+    }
+    
     // 現在の言語に合わせて表示
     updateLanguageDisplay();
 }
@@ -201,18 +209,6 @@ function updateLanguageDisplay() {
     document.querySelectorAll(`.lang-${currentLang}`).forEach(el => {
         el.style.display = 'block';
     });
-}
-
-// 言語切り替え関数を更新
-function switchLanguage(lang) {
-    currentLang = lang;
-    updateLanguageDisplay();
-    
-    document.querySelectorAll('.language-switcher button').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    event.target.classList.add('active');
 }
 
 // お問い合わせフォーム送信処理
