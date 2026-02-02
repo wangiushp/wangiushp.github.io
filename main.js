@@ -168,22 +168,31 @@ async function loadPageContent(menuId) {
 
 // ページコンテンツを表示
 function displayPageContent(contents, container, menuId) {
-    // 複数コンテンツを表示
-    let htmlEn = '';
-    let htmlZh = '';
-    let htmlJa = '';
+    // 最初のコンテンツを取得
+    const content = contents[0];
     
-    contents.forEach(content => {
-        htmlEn += `<div class="content-block">${content.content_en || ''}</div>`;
-        htmlZh += `<div class="content-block">${content.content_zh || ''}</div>`;
-        htmlJa += `<div class="content-block">${content.content_ja || ''}</div>`;
-    });
-    
-    container.innerHTML = `
-        <div class="lang-en">${htmlEn}</div>
-        <div class="lang-zh" style="display:none;">${htmlZh}</div>
-        <div class="lang-ja" style="display:none;">${htmlJa}</div>
-    `;
+    // TW_sectionsがあるかチェック
+    if (content && content.TW_sections && content.TW_sections.length > 0) {
+        // アコーディオン形式で表示
+        displayAccordionContent(content.TW_sections, container);
+    } else {
+        // 従来の表示方法（TW_sectionsがない場合）
+        let htmlEn = '';
+        let htmlZh = '';
+        let htmlJa = '';
+        
+        contents.forEach(content => {
+            htmlEn += `<div class="content-block">${content.content_en || ''}</div>`;
+            htmlZh += `<div class="content-block">${content.content_zh || ''}</div>`;
+            htmlJa += `<div class="content-block">${content.content_ja || ''}</div>`;
+        });
+        
+        container.innerHTML = `
+            <div class="lang-en">${htmlEn}</div>
+            <div class="lang-zh" style="display:none;">${htmlZh}</div>
+            <div class="lang-ja" style="display:none;">${htmlJa}</div>
+        `;
+    }
     
     // タイトルも更新（最初のコンテンツのタイトルを使用）
     if (contents.length > 0 && contents[0].title_en) {
@@ -198,6 +207,76 @@ function displayPageContent(contents, container, menuId) {
     
     // 現在の言語に合わせて表示
     updateLanguageDisplay();
+}
+
+// アコーディオン形式でコンテンツを表示
+function displayAccordionContent(sections, container) {
+    // display_orderでソート
+    const sortedSections = sections.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+    
+    let htmlEn = '<div class="content-accordion">';
+    let htmlZh = '<div class="content-accordion">';
+    let htmlJa = '<div class="content-accordion">';
+    
+    sortedSections.forEach((section, index) => {
+        const isOpen = section.is_open ? 'open' : '';
+        const arrowClass = section.is_open ? 'open' : '';
+        
+        htmlEn += `
+            <div class="accordion-section">
+                <h3 class="accordion-title" onclick="toggleAccordion(this)">
+                    <span class="accordion-arrow ${arrowClass}">▶</span>
+                    ${section.section_title_en || ''}
+                </h3>
+                <div class="accordion-content ${isOpen}">
+                    ${section.section_content_en || ''}
+                </div>
+            </div>
+        `;
+        
+        htmlZh += `
+            <div class="accordion-section">
+                <h3 class="accordion-title" onclick="toggleAccordion(this)">
+                    <span class="accordion-arrow ${arrowClass}">▶</span>
+                    ${section.section_title_zh || ''}
+                </h3>
+                <div class="accordion-content ${isOpen}">
+                    ${section.section_content_zh || ''}
+                </div>
+            </div>
+        `;
+        
+        htmlJa += `
+            <div class="accordion-section">
+                <h3 class="accordion-title" onclick="toggleAccordion(this)">
+                    <span class="accordion-arrow ${arrowClass}">▶</span>
+                    ${section.section_title_ja || ''}
+                </h3>
+                <div class="accordion-content ${isOpen}">
+                    ${section.section_content_ja || ''}
+                </div>
+            </div>
+        `;
+    });
+    
+    htmlEn += '</div>';
+    htmlZh += '</div>';
+    htmlJa += '</div>';
+    
+    container.innerHTML = `
+        <div class="lang-en">${htmlEn}</div>
+        <div class="lang-zh" style="display:none;">${htmlZh}</div>
+        <div class="lang-ja" style="display:none;">${htmlJa}</div>
+    `;
+}
+
+// アコーディオンの開閉
+function toggleAccordion(element) {
+    const arrow = element.querySelector('.accordion-arrow');
+    const content = element.nextElementSibling;
+    
+    arrow.classList.toggle('open');
+    content.classList.toggle('open');
 }
 
 // 言語表示を更新

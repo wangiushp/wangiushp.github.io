@@ -281,6 +281,57 @@ body {
     margin-bottom: 20px;
 }
 
+/* アコーディオンスタイル */
+.content-accordion {
+    width: 100%;
+}
+
+.accordion-section {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordion-title {
+    cursor: pointer;
+    padding: 15px 10px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #000;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.accordion-title:hover {
+    color: #333;
+}
+
+.accordion-arrow {
+    display: inline-block;
+    margin-right: 15px;
+    transition: transform 0.3s;
+    font-size: 0.8rem;
+}
+
+.accordion-arrow.open {
+    transform: rotate(90deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 10px;
+}
+
+.accordion-content.open {
+    max-height: 3000px;
+    padding: 0 10px 20px 10px;
+    transition: max-height 0.5s ease-in;
+}
+
 /* お問い合わせフォーム */
 .contact-form {
     max-width: 600px;
