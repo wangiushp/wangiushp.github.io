@@ -327,7 +327,7 @@ body {
 }
 
 .accordion-content.open {
-    max-height: none;
+    max-height: 30000px; /* none は相性X1 → 最悪50000にする */
     padding: 0 10px 20px 10px;
 }
 
